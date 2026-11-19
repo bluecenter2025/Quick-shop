@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b36">
+<title>Quick Shop | كويك شوب</title>
+<style>
+:root{--navy:#101b36;--navy2:#17294d;--blue:#2b7de9;--sky:#dff2ff;--ink:#18243a;--muted:#718096;--bg:#f5f8fc;--white:#fff;--line:#e5ebf3;--green:#168653}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+.topbar{background:var(--navy);color:white;padding:12px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px}
+header{background:white;position:sticky;top:0;z-index:5;box-shadow:0 2px 14px #101b3610}
+.nav{max-width:1180px;margin:auto;padding:16px 20px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);font-weight:900;font-size:21px;white-space:nowrap}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#2b7de9,#101b36);display:grid;place-items:center;color:#fff;font-weight:900}
+.search{flex:1;position:relative}.search input{width:100%;border:1px solid var(--line);background:#f7f9fc;border-radius:13px;padding:12px 42px 12px 14px;outline:none}
+.search:before{content:"⌕";position:absolute;right:15px;top:6px;font-size:25px;color:var(--muted)}
+.nav-actions{display:flex;gap:9px}.btn{padding:11px 15px;border-radius:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn-primary{background:var(--blue);color:white}.btn-dark{background:var(--navy);color:white}.btn-light{background:#edf5ff;color:var(--navy)}
+.hero{max-width:1180px;margin:24px auto 18px;padding:0 20px}
+.hero-box{background:linear-gradient(115deg,#101b36 0%,#193b70 65%,#2b7de9 100%);color:white;border-radius:24px;padding:42px 38px;display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden;position:relative}
+.hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 12px}.hero p{color:#dceaff;line-height:1.9;margin:0 0 20px;max-width:550px}
+.hero-art{font-size:105px;filter:drop-shadow(0 15px 15px #0004);padding:0 35px}
+.container{max-width:1180px;margin:0 auto;padding:10px 20px 60px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:25px 0 16px}.section-head h2{margin:0;color:var(--navy);font-size:23px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.categories{display:flex;gap:9px;overflow:auto;padding:2px 0 12px}.chip{white-space:nowrap;padding:9px 16px;border-radius:30px;background:#fff;border:1px solid var(--line);color:#4c5b70}.chip.active{background:var(--navy);color:white;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.product{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}.product:hover{transform:translateY(-3px);box-shadow:0 12px 30px #17294d12}
+.product-image{height:180px;background:linear-gradient(135deg,#e9f4ff,#f8fbff);display:grid;place-items:center;font-size:66px}
+.product-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.product-name{font-weight:800}.product-desc{font-size:12px;color:var(--muted);line-height:1.6;min-height:34px}.price{color:var(--blue);font-weight:900;font-size:18px}.product .btn{width:100%;margin-top:auto}
+.empty{grid-column:1/-1;background:white;border:1px dashed #cbd5e1;border-radius:16px;padding:30px;text-align:center;color:var(--muted)}
+footer{background:var(--navy);color:#dce6f6;padding:28px 20px;text-align:center;line-height:1.9}footer strong{color:white}
+.float-wa{position:fixed;bottom:20px;left:20px;background:#20b968;color:white;border-radius:50px;padding:14px 18px;font-weight:800;box-shadow:0 8px 24px #0003;z-index:8;text-decoration:none}
+.overlay{display:none;position:fixed;inset:0;background:#08132699;z-index:20;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}
+.modal{background:white;border-radius:20px;width:min(560px,100%);max-height:90vh;overflow:auto;padding:22px;box-shadow:0 20px 70px #0004}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.modal-head h2{margin:0;color:var(--navy)}.close{background:#eef2f7;border-radius:10px;padding:8px 12px;font-size:20px}
+.field{display:grid;gap:6px;margin:11px 0}.field label{font-size:13px;font-weight:700;color:#45546a}.field input,.field select,.field textarea{width:100%;border:1px solid #dce4ef;border-radius:11px;padding:12px;background:#fbfcfe;outline:none}.field textarea{min-height:70px;resize:vertical}
+.cart-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);gap:10px}.qty{display:flex;align-items:center;gap:9px}.qty button{width:27px;height:27px;border-radius:8px;background:#edf4ff;color:var(--navy);font-weight:900}
+.total{display:flex;justify-content:space-between;font-weight:900;font-size:19px;padding:16px 0}
+.note{background:#eef7ff;color:#355579;border-radius:12px;padding:11px;font-size:12px;line-height:1.7;margin:12px 0}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-art{font-size:75px;padding:0 10px}}
+@media(max-width:620px){.topbar{font-size:11px}.nav{flex-wrap:wrap;padding:12px 15px}.brand{font-size:18px}.search{order:3;flex-basis:100%}.nav-actions{margin-right:auto}.nav-actions .btn{padding:10px 12px}.hero{margin-top:14px;padding:0 14px}.hero-box{padding:27px 22px;border-radius:19px}.hero-art{font-size:55px;padding:0}.hero p{font-size:13px}.container{padding:8px 14px 45px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.product-image{height:140px;font-size:53px}.product-body{padding:11px}.product-name{font-size:14px}.product-desc{font-size:11px}.price{font-size:16px}.product .btn{padding:10px;font-size:12px}.section-head h2{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>🚚 توصيل داخل العراق</span><span>الدفع عند الاستلام متاح</span><span>Quick Shop — تسوّق بسهولة</span></div>
+<header><div class="nav">
+<a class="brand" href="#"><span class="logo">Q</span><span>QUICK SHOP<br><small style="font-size:12px;color:#718096">كويك شوب</small></span></a>
+<div class="search"><input id="search" placeholder="ابحث عن منتج..." aria-label="ابحث عن منتج"></div>
+<div class="nav-actions"><button class="btn btn-light" onclick="openCart()">🛒 <span>السلة</span> <b id="cartCount">0</b></button></div>
+</div></header>
+<section class="hero"><div class="hero-box"><div><h1>كل ما تحتاجه،<br>بمكان واحد.</h1><p>اكتشف منتجات مختارة بعناية، تسوّق بسهولة، واطلب مباشرة عبر واتساب.</p><button class="btn btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">تسوّق الآن ←</button></div><div class="hero-art">🛍️</div></div></section>
+<main class="container">
+<div class="section-head"><div><h2>تسوّق حسب القسم</h2><p>اختار القسم حتى تشوف المنتجات</p></div></div>
+<div class="categories" id="categories"></div>
+<div class="section-head" id="products"><div><h2>منتجات المتجر</h2><p>اختيارات Quick Shop</p></div><span id="productCount" style="color:#718096;font-size:13px"></span></div>
+<div class="grid" id="productGrid"></div>
+</main>
+<footer><strong>QUICK SHOP | كويك شوب</strong><br>كل ما تحتاجه... بمكان واحد<br><small>للاستفسار والطلب تواصل معنا عبر واتساب</small></footer>
+<a class="float-wa" id="waDirect" target="_blank" rel="noopener">واتساب 💬</a>
+
+<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()"><div class="modal">
+<div class="modal-head"><h2>سلة المشتريات</h2><button class="close" onclick="closeCart()">×</button></div>
+<div id="cartItems"></div><div class="total"><span>المجموع</span><span id="cartTotal">0 د.ع</span></div>
+<button class="btn btn-primary" style="width:100%" onclick="showCheckout()">إكمال الطلب</button>
+<div class="note">بعد الضغط على تأكيد الطلب، سيفتح واتساب برسالة تحتوي معلوماتك والمنتجات. اضغط إرسال داخل واتساب لإكمال الطلب.</div>
+</div></div>
+
+<div class="overlay" id="checkoutOverlay" onclick="if(event.target===this)closeCheckout()"><div class="modal">
+<div class="modal-head"><h2>معلومات التوصيل</h2><button class="close" onclick="closeCheckout()">×</button></div>
+<form id="checkoutForm">
+<div class="field"><label>الاسم الكامل *</label><input name="name" required autocomplete="name" placeholder="اكتب اسمك الكامل"></div>
+<div class="field"><label>رقم الهاتف *</label><input name="phone" required inputmode="tel" autocomplete="tel" placeholder="07XXXXXXXXX"></div>
+<div class="field"><label>المحافظة *</label><select name="city" required><option value="">اختر المحافظة</option><option>بغداد</option><option>البصرة</option><option>نينوى</option><option>أربيل</option><option>النجف</option><option>كربلاء</option><option>بابل</option><option>ديالى</option><option>الأنبار</option><option>كركوك</option><option>واسط</option><option>ذي قار</option><option>ميسان</option><option>المثنى</option><option>القادسية</option><option>صلاح الدين</option><option>دهوك</option><option>السليمانية</option></select></div>
+<div class="field"><label>المنطقة / القضاء *</label><input name="area" required placeholder="مثلاً: الدورة"></div>
+<div class="field"><label>العنوان بالتفصيل *</label><textarea name="address" required placeholder="الشارع، أقرب نقطة دالة، رقم الدار..."></textarea></div>
+<div class="field"><label>ملاحظات إضافية (اختياري)</label><textarea name="notes" placeholder="أي تفاصيل إضافية للطلب"></textarea></div>
+<button class="btn btn-primary" style="width:100%" type="submit">تأكيد الطلب وفتح واتساب</button>
+</form>
+</div></div>
+<script>
+const STORE_PHONE = "9647863000920";
+const defaultProducts = [
+ {id:1,name:"ساعة ذكية",category:"إلكترونيات",price:25000,emoji:"⌚",desc:"مثال تجريبي — غيّر الاسم والسعر والصورة"},
+ {id:2,name:"سماعة لاسلكية",category:"إلكترونيات",price:15000,emoji:"🎧",desc:"مثال تجريبي — أضف وصف المنتج"},
+ {id:3,name:"حقيبة يومية",category:"إكسسوارات",price:20000,emoji:"👜",desc:"مثال تجريبي — أضف تفاصيل المنتج"},
+ {id:4,name:"عطر مميز",category:"عطور",price:30000,emoji:"🧴",desc:"مثال تجريبي — أضف تفاصيل المنتج"}
+];
+let products = defaultProducts;
+let cart = {};
+let activeCategory = "الكل";
+const fmt = n => new Intl.NumberFormat("en-US").format(n) + " د.ع";
+const categories = ["الكل",...new Set(products.map(p=>p.category))];
+function renderCategories(){
+ document.getElementById("categories").innerHTML=categories.map(c=>`<button class="chip ${activeCategory===c?'active':''}" onclick="setCategory('${c}')">${c}</button>`).join("");
+}
+function setCategory(c){activeCategory=c;renderCategories();renderProducts();}
+function renderProducts(){
+ const term=document.getElementById("search").value.trim().toLowerCase();
+ const list=products.filter(p=>(activeCategory==="الكل"||p.category===activeCategory)&&(p.name.toLowerCase().includes(term)||p.desc.toLowerCase().includes(term)));
+ document.getElementById("productCount").textContent=list.length+" منتج";
+ document.getElementById("productGrid").innerHTML=list.length?list.map(p=>`<article class="product"><div class="product-image">${p.emoji}</div><div class="product-body"><div class="product-name">${p.name}</div><div class="product-desc">${p.desc}</div><div class="price">${fmt(p.price)}</div><button class="btn btn-dark" onclick="addToCart(${p.id})">أضف إلى السلة +</button></div></article>`).join(""):`<div class="empty">ماكو منتجات مطابقة حالياً.</div>`;
+}
+function addToCart(id){cart[id]=(cart[id]||0)+1;updateCart();document.getElementById("cartOverlay").classList.add("show");}
+function updateCart(){
+ const entries=Object.entries(cart).filter(([id,q])=>q>0);
+ document.getElementById("cartCount").textContent=entries.reduce((s,[id,q])=>s+q,0);
+ document.getElementById("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{const p=products.find(x=>x.id==id);return `<div class="cart-row"><div><b>${p.name}</b><br><small>${fmt(p.price)} × ${q}</small></div><div class="qty"><button onclick="changeQty(${id},-1)">−</button><b>${q}</b><button onclick="changeQty(${id},1)">+</button></div></div>`}).join(""):`<div class="empty">السلة فارغة. أضف منتجات حتى تكمل الطلب.</div>`;
+ document.getElementById("cartTotal").textContent=fmt(total());
+}
+function total(){return Object.entries(cart).reduce((s,[id,q])=>s+(products.find(p=>p.id==id)?.price||0)*q,0)}
+function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];updateCart();}
+function openCart(){updateCart();document.getElementById("cartOverlay").classList.add("show")}
+function closeCart(){document.getElementById("cartOverlay").classList.remove("show")}
+function showCheckout(){if(!Object.keys(cart).length){alert("السلة فارغة");return}closeCart();document.getElementById("checkoutOverlay").classList.add("show")}
+function closeCheckout(){document.getElementById("checkoutOverlay").classList.remove("show")}
+document.getElementById("checkoutForm").addEventListener("submit",e=>{
+ e.preventDefault();if(!Object.keys(cart).length){alert("السلة فارغة");return}
+ const f=new FormData(e.target);
+ const lines=Object.entries(cart).map(([id,q])=>{const p=products.find(x=>x.id==id);return `• ${p.name} × ${q} = ${fmt(p.price*q)}`});
+ const msg=`🛍️ طلب جديد من Quick Shop\n\n👤 معلومات الزبون:\nالاسم: ${f.get("name")}\nالهاتف: ${f.get("phone")}\nالمحافظة: ${f.get("city")}\nالمنطقة: ${f.get("area")}\nالعنوان: ${f.get("address")}\nملاحظات: ${f.get("notes")||"لا توجد"}\n\n📦 المنتجات:\n${lines.join("\n")}\n\n💰 المجموع: ${fmt(total())}\n💳 الدفع: عند الاستلام`;
+ const url=`https://wa.me/${STORE_PHONE}?text=${encodeURIComponent(msg)}`;
+ window.open(url,"_blank");cart={};updateCart();e.target.reset();closeCheckout();
+});
+document.getElementById("search").addEventListener("input",renderProducts);
+document.getElementById("waDirect").href=`https://wa.me/${STORE_PHONE}?text=${encodeURIComponent("مرحباً Quick Shop، أريد الاستفسار عن المنتجات.")}`;
+renderCategories();renderProducts();updateCart();
+</script>
+</body></html>
